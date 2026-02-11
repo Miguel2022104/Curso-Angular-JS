@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app="MyFirstApp" >
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="controller.js"></script>
+    <title>Child controller</title>
+
+</head>
+<body ng-controller="FirstController">
+    {{nombre}}
+    <P><strong>Valor del padre: </strong>{{$parent.nombre}}</P>
+</body>
+</html> 

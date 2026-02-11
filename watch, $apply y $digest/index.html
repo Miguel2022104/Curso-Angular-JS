@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+<head>
+    <title>Ejemplo de $Apply</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        angular.module('mainModule', [])
+            .controller('MainController', function($scope) {
+                $scope.nombre = "Miguel Martinez";
+                /*setTimeout(function() {
+                    $scope.$apply(function() {
+                        $scope.nombre = "Cambio a Martinez Miguel";
+                    });
+                }, 2000);*/
+                
+            });
+    </script>
+</head>
+<body ng-controller ="MainController">
+    <h1>{{nombre}}</h1>
+    <button ng-click="nombre = 'Cambio a Martinez Miguel'">Cambiar nombre</button>
+</body>
+</html>
