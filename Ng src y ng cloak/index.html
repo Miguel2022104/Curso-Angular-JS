@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="CumstonDirective">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Mi primera pagina con AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="AppCtrl">
+    <ul class="to-list">
+        <li ng-repeat="repo in repos">
+            <img ng-src="{{repo.avatar_url}}">
+            <h1>{{repo.name}}</h1>
+        </li>
+    </ul>
+</body>
+   
+</body>
+</html>
