@@ -1,17 +1,85 @@
 angular.module("FinalApp")
 .controller("MainController", function($scope, PostService) {
     $scope.posts = PostService.getPosts();
+    $scope.searchQuery = "";
+    $scope.sortCriteria = "date";
+    $scope.selectedAuthor = "";
     
     $scope.deletePost = function(id) {
         if (confirm("¿Estás seguro de eliminar este post?")) {
             PostService.deletePost(id);
             $scope.posts = PostService.getPosts();
+            $scope.updateStatistics();
         }
     };
     
     $scope.likePost = function(id) {
         PostService.likePost(id);
+        $scope.updateStatistics();
     };
+    
+    // Nueva función: Quitar like de un post
+    $scope.unlikePost = function(id) {
+        PostService.unlikePost(id);
+        $scope.updateStatistics();
+    };
+    
+    // Nueva función: Buscar posts
+    $scope.searchPosts = function() {
+        if ($scope.searchQuery) {
+            $scope.posts = PostService.searchPosts($scope.searchQuery);
+        } else {
+            $scope.posts = PostService.getPosts();
+        }
+    };
+    
+    // Nueva función: Limpiar búsqueda
+    $scope.clearSearch = function() {
+        $scope.searchQuery = "";
+        $scope.posts = PostService.getPosts();
+    };
+    
+    // Nueva función: Ordenar posts
+    $scope.sortPostsBy = function(criteria) {
+        $scope.sortCriteria = criteria;
+        $scope.posts = PostService.sortPosts(criteria);
+    };
+    
+    // Nueva función: Filtrar por autor
+    $scope.filterByAuthor = function(author) {
+        $scope.selectedAuthor = author;
+        if (author) {
+            $scope.posts = PostService.getPostsByAuthor(author);
+        } else {
+            $scope.posts = PostService.getPosts();
+        }
+    };
+    
+    // Nueva función: Obtener estadísticas
+    $scope.updateStatistics = function() {
+        $scope.statistics = PostService.getStatistics();
+    };
+    
+    // Nueva función: Duplicar post
+    $scope.duplicatePost = function(id) {
+        var duplicated = PostService.duplicatePost(id);
+        if (duplicated) {
+            $scope.posts = PostService.getPosts();
+            alert("Post duplicado exitosamente");
+        }
+    };
+    
+    // Nueva función: Obtener autores únicos
+    $scope.getUniqueAuthors = function() {
+        var authors = {};
+        $scope.posts.forEach(function(post) {
+            authors[post.author] = true;
+        });
+        return Object.keys(authors);
+    };
+    
+    // Inicializar estadísticas
+    $scope.updateStatistics();
 })
 
 .controller("CreateController", function($scope, $location, PostService) {
