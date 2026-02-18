@@ -16,7 +16,36 @@ angular.module("FinalApp")
             author: "Developer",
             date: new Date(),
             likes: 10
+        },
+        {
+            id: 3,
+            title: "Prueba de post numero 3",
+            content: "Este es un post de prueba para verificar que todo funciona correctamente",
+            author: "User",
+            date: new Date(),
+            likes: 100
+
+        },
+        {
+            id: 4,
+            title: "Prueba de post numero 4",
+            content: "Este es un post de prueba para verificar que todo funciona correctamente",
+            author: "User",
+            date: new Date(),
+            likes: 100
+
+        },
+        {
+            id: 5,
+            title: "Prueba de post numero 5",
+            content: "Este es un post de prueba para verificar que todo funciona correctamente",
+            author: "User",
+            date: new Date(),
+            likes: 100
+
         }
+
+    
     ];
     
     var nextId = 3;
