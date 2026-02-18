@@ -1,4 +1,33 @@
-<lx-tabs>
-    <lx-tabs heading="Posts"></lx-tabs>
-    <lx-tabs heading="Posts"></lx-tabs>
-</lx-tabs>
+<div class="posts-container">
+    <h2>Todos los Posts</h2>
+    
+    <div ng-if="posts.length === 0" class="no-posts">
+        <p>No hay posts disponibles. ¡Crea el primero!</p>
+    </div>
+    
+    <div class="post-card" ng-repeat="post in posts">
+        <div class="post-header">
+            <h3>
+                <a ng-href="#/post/{{post.id}}">{{post.title}}</a>
+            </h3>
+            <span class="post-author">Por: {{post.author}}</span>
+        </div>
+        
+        <div class="post-content">
+            <p>{{post.content | limitTo: 150}}{{post.content.length > 150 ? '...' : ''}}</p>
+        </div>
+        
+        <div class="post-footer">
+            <span class="post-date">{{post.date | date:'dd/MM/yyyy HH:mm'}}</span>
+            
+            <div class="post-actions">
+                <button class="btn btn-like" ng-click="likePost(post.id)">
+                    ❤ {{post.likes}}
+                </button>
+                <a ng-href="#/post/{{post.id}}" class="btn btn-view">Ver más</a>
+                <a ng-href="#/edit/{{post.id}}" class="btn btn-edit">Editar</a>
+                <button class="btn btn-delete" ng-click="deletePost(post.id)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
